@@ -43,10 +43,10 @@ def convert_csv_to_json():
             tracker = get_value(row, "Tracker", "유형", "트래커")
             status = get_value(row, "Status", "상태")
             priority = get_value(row, "Priority", "우선순위")
-            author = get_value(row, "Author", "작성자")
+            author = get_value(row, "Author", "저자")
             assigned_to = get_value(row, "Assigned to", "담당자")
-            created_on = get_value(row, "Created", "Created on", "작성일")
-            updated_on = get_value(row, "Updated", "Updated on", "변경일")
+            created_on = get_value(row, "Created", "Created on", "등록")
+            updated_on = get_value(row, "Updated", "Updated on", "변경")
 
             issues.append({
                 "id": issue_id,

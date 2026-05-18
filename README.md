@@ -37,8 +37,11 @@ docker exec -it redmine-rag-ollama ollama pull nomic-embed-text
 Python 3.11 이상 권장
 
 ```bash
-python3.11 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate
+
+# window 의 경우
+.venv/Scripts/activate
 ```
 
 패키지 설치:
@@ -65,7 +68,7 @@ cp ~/Downloads/issues.csv data/redmine_issues.csv
 ## 5. CSV를 JSON으로 변환
 
 ```bash
-python3.11 scripts/sync_redmine_csv.py
+python scripts/sync_redmine_csv.py
 ```
 
 생성된 JSON을 인덱싱 경로로 이동합니다.
@@ -78,21 +81,21 @@ mv data/redmine_issues.json data/raw/issues.json
 ## 6. Vector Index 생성
 
 ```bash
-python3.11 scripts/build_index.py
+python scripts/build_index.py
 ```
 
 ## 7. 질의 실행
 
 ```bash
-python3.11 scripts/ask.py "KShot 관련 최근 장애 이슈 요약해줘"
+python scripts/ask.py "KShot 관련 최근 장애 이슈 요약해줘"
 ```
 
 예시:
 
 ```bash
-python3.11 scripts/ask.py "Kafka timeout 관련 이슈 찾아줘"
-python3.11 scripts/ask.py "3010 collector 장애 원인 알려줘"
-python3.11 scripts/ask.py "Redis timeout 관련 장애 정리해줘"
+python scripts/ask.py "Kafka timeout 관련 이슈 찾아줘"
+python scripts/ask.py "3010 collector 장애 원인 알려줘"
+python scripts/ask.py "Redis timeout 관련 장애 정리해줘"
 ```
 
 ## 전체 실행 순서 요약
@@ -103,19 +106,19 @@ docker compose up -d
 docker exec -it redmine-rag-ollama ollama pull qwen2.5:3b
 docker exec -it redmine-rag-ollama ollama pull nomic-embed-text
 
-python3.11 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
 mkdir -p data
 cp ~/Downloads/issues.csv data/redmine_issues.csv
 
-python3.11 scripts/sync_redmine_csv.py
+python scripts/sync_redmine_csv.py
 
 mkdir -p data/raw
 mv data/redmine_issues.json data/raw/issues.json
 
-python3.11 scripts/build_index.py
+python scripts/build_index.py
 
-python3.11 scripts/ask.py "KShot 관련 최근 장애 이슈 요약해줘"
+python scripts/ask.py "KShot 관련 최근 장애 이슈 요약해줘"
 ```

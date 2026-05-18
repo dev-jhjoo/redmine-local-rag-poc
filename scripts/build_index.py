@@ -17,7 +17,7 @@ OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434").rstrip(
 EMBED_MODEL = os.getenv("EMBED_MODEL", "nomic-embed-text")
 QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 QDRANT_COLLECTION = os.getenv("QDRANT_COLLECTION", "redmine_issues")
-RAW_FILE = Path("data/raw/issues.json")
+RAW_FILE = Path("data/redmine_issues.json")
 
 
 def clean_text(text: str | None) -> str:
@@ -133,8 +133,8 @@ def main() -> None:
     sample_vector = embed("dimension check")
     vector_size = len(sample_vector)
 
-    if client.collection_exists(QDRANT_COLLECTION):
-        client.delete_collection(QDRANT_COLLECTION)
+    # if client.collection_exists(QDRANT_COLLECTION):
+    client.delete_collection(QDRANT_COLLECTION)
 
     client.create_collection(
         collection_name=QDRANT_COLLECTION,

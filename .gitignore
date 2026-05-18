@@ -7,3 +7,5 @@ data/qdrant/*
 data/raw/*
 data/*.json
 data/*.csv
+
+.vscode/

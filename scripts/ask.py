@@ -9,7 +9,7 @@ from qdrant_client import QdrantClient
 load_dotenv()
 
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434").rstrip("/")
-LLM_MODEL = os.getenv("LLM_MODEL", "qwen3:4b")
+LLM_MODEL = os.getenv("LLM_MODEL", "qwen2.5:3b")
 EMBED_MODEL = os.getenv("EMBED_MODEL", "nomic-embed-text")
 QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 QDRANT_COLLECTION = os.getenv("QDRANT_COLLECTION", "redmine_issues")
